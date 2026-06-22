@@ -5,7 +5,7 @@ extends CollisionPolygon2D
 	set(val):
 		_build_circle()
 
-@export var radius: float = 300.0:
+@export var radius: float:
 	set(val):
 		radius = val
 		_build_circle()

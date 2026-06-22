@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bg77ri7qhxxkx"]
 
-[ext_resource type="Script" uid="uid://coowyu4fs5wjh" path="res://beyblade.gd" id="1_e03yv"]
+[ext_resource type="Script" uid="uid://coowyu4fs5wjh" path="res://scripts/beyblade.gd" id="1_e03yv"]
 [ext_resource type="Texture2D" uid="uid://ckyucsk2y56dk" path="res://assets/bullet.png" id="1_rsb3f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljcpu"]

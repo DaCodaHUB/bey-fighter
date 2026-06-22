@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://jxaejkrn8hmu"]
+
+[ext_resource type="Script" uid="uid://t7qxgi05gc1r" path="res://scripts/main.gd" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://bdsoqe4w37fvy" path="res://scripts/stadium.gd" id="2_o6xl0"]
+[ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/circle_generator.gd" id="3_tipki"]
+[ext_resource type="Texture2D" uid="uid://c0uhrt47yoql6" path="res://assets/stadium.png" id="4_85g3d"]
+[ext_resource type="Script" uid="uid://din75et8jupup" path="res://scripts/statistics.gd" id="6_ya4ey"]
+
+[node name="Main" type="Node2D" unique_id=43891631]
+script = ExtResource("1_tefeu")
+
+[node name="Stadium" type="StaticBody2D" parent="." unique_id=1949684580]
+script = ExtResource("2_o6xl0")
+
+[node name="BoundingCircle" type="CollisionPolygon2D" parent="Stadium" unique_id=1333282430]
+build_mode = 1
+polygon = PackedVector2Array(400, 0, 396.57794, 52.210476, 386.37033, 103.52762, 369.55182, 153.07338, 346.41016, 200, 317.34134, 243.50458, 282.8427, 282.8427, 243.50458, 317.34134, 200, 346.41016, 153.07338, 369.55182, 103.52762, 386.37033, 52.210476, 396.57794, 2.4492127e-14, 400, -52.210476, 396.57794, -103.52762, 386.37033, -153.07338, 369.55182, -200, 346.41016, -243.50458, 317.34134, -282.8427, 282.8427, -317.34134, 243.50458, -346.41016, 200, -369.55182, 153.07338, -386.37033, 103.52762, -396.57794, 52.210476, -400, 4.8984254e-14, -396.57794, -52.210476, -386.37033, -103.52762, -369.55182, -153.07338, -346.41016, -200, -317.34134, -243.50458, -282.8427, -282.8427, -243.50458, -317.34134, -200, -346.41016, -153.07338, -369.55182, -103.52762, -386.37033, -52.210476, -396.57794, -7.347638e-14, -400, 52.210476, -396.57794, 103.52762, -386.37033, 153.07338, -369.55182, 200, -346.41016, 243.50458, -317.34134, 282.8427, -282.8427, 317.34134, -243.50458, 346.41016, -200, 369.55182, -153.07338, 386.37033, -103.52762, 396.57794, -52.210476)
+script = ExtResource("3_tipki")
+radius = 400.0
+vertex_count = 48
+
+[node name="Sprite2D" type="Sprite2D" parent="Stadium" unique_id=1494063978]
+texture = ExtResource("4_85g3d")
+
+[node name="CenterPoint" type="Marker2D" parent="Stadium" unique_id=122242584]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1737888755]
+
+[node name="Statistics" type="CanvasLayer" parent="Node2D" unique_id=81392088]
+offset = Vector2(0, 720)
+transform = Transform2D(1, 0, 0, 1, 0, 720)
+script = ExtResource("6_ya4ey")
+
+[node name="BuffContainer" type="VBoxContainer" parent="Node2D/Statistics" unique_id=658678206]
+offset_left = 400.0
+offset_right = 489.0
+offset_bottom = 45.0
+alignment = 1
+
+[node name="Buffs" type="Label" parent="Node2D/Statistics/BuffContainer" unique_id=998920996]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Buffs:"
+horizontal_alignment = 3
+
+[node name="DebuffContainer" type="VBoxContainer" parent="Node2D/Statistics" unique_id=1228967091]
+offset_left = 1400.0
+offset_right = 1530.0
+offset_bottom = 45.0
+alignment = 1
+
+[node name="Debuffs" type="Label" parent="Node2D/Statistics/DebuffContainer" unique_id=254748179]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Debuffs:"
+horizontal_alignment = 1

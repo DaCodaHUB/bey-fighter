@@ -9,6 +9,7 @@ var center_node: Marker2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
+				
 	# Randomize launch spin direction and speed
 	angular_velocity = randf_range(max_spin_speed - 10, max_spin_speed) * (1 if randf() > 0.5 else -1)
 	
