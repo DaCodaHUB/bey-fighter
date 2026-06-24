@@ -7,6 +7,9 @@ var globalCollisionRect: Rect2
 
 var transform_vector = Vector2(920, 600)
 
+signal blade_created(role, blade)
+signal blade_reset()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -17,15 +20,6 @@ func _ready() -> void:
 	for p in $BoundingCircle.polygon:
 		localCollisionRect = localCollisionRect.expand(p)
 	print("local collision Size:", localCollisionRect.size)		
-	
-	#globalCollisionRect = Rect2(
-		#Vector.ZERO,
-		#localCollisionRect.size.x + transform_vector.x,
-		#localCollisionRect.size.y + transform_vector.y
-	#)
-	#print("global collision size:", globalCollisionRect.size)		
-
-
 
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,8 +32,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if distance < $BoundingCircle.radius:
 				# Clear previous match remnants
-				if has_node("PlayerBlade"): get_node("PlayerBlade").queue_free()
-				if has_node("EnemyBlade"): get_node("EnemyBlade").queue_free()
+				var prevPlayerBlade = get_tree().current_scene.get_node("PlayerBlade")
+				if prevPlayerBlade:
+					prevPlayerBlade.free()
+				var prevEnemyBlade = get_tree().current_scene.get_node("EnemyBlade")
+				if prevEnemyBlade:
+					prevEnemyBlade.free()
+					
+				blade_reset.emit()
 				
 				# Define safe bounds so they don't spawn right on the wall or dead-center
 				var min_spawn_dist = 100.0
@@ -56,6 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				user_blade.add_to_group("player")
 				user_blade.global_position = center_global + user_offset
 				get_tree().current_scene.add_child(user_blade)
+				blade_created.emit("Player", user_blade)
 				
 				# --- RANDOMIZE ENEMY POSITION (Top Half) ---
 				# Angles from PI to 2*PI radians point upwards
@@ -68,6 +69,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				enemy_blade.add_to_group("enemies")
 				enemy_blade.global_position = center_global + enemy_offset
 				get_tree().current_scene.add_child(enemy_blade)
+				blade_created.emit("Enemy", enemy_blade)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

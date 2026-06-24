@@ -1,55 +1,159 @@
 [gd_scene format=3 uid="uid://jxaejkrn8hmu"]
 
-[ext_resource type="Script" uid="uid://t7qxgi05gc1r" path="res://scripts/main.gd" id="1_tefeu"]
-[ext_resource type="Script" uid="uid://bdsoqe4w37fvy" path="res://scripts/stadium.gd" id="2_o6xl0"]
-[ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/circle_generator.gd" id="3_tipki"]
+[ext_resource type="Script" uid="uid://bdsoqe4w37fvy" path="res://scripts/game/stadium.gd" id="2_o6xl0"]
+[ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/game/circle_generator.gd" id="3_tipki"]
 [ext_resource type="Texture2D" uid="uid://c0uhrt47yoql6" path="res://assets/stadium.png" id="4_85g3d"]
-[ext_resource type="Script" uid="uid://din75et8jupup" path="res://scripts/statistics.gd" id="6_ya4ey"]
+[ext_resource type="Script" uid="uid://db0ni15wwm12i" path="res://scripts/ui/health_bars.gd" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://cnhs0fhuw8weo" path="res://scripts/ui/player_hp.gd" id="5_tipki"]
+[ext_resource type="Script" uid="uid://d3opvvqjpqr6k" path="res://scripts/ui/buff_container.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://dqjeh4wmeyqoo" path="res://scripts/game_status.gd" id="6_tipki"]
+[ext_resource type="Script" uid="uid://bohpivf5nojl5" path="res://scripts/ui/debuff_container.gd" id="7_o6xl0"]
 
-[node name="Main" type="Node2D" unique_id=43891631]
-script = ExtResource("1_tefeu")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fykyv"]
+skew = Vector2(-0.3, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
-[node name="Stadium" type="StaticBody2D" parent="." unique_id=1949684580]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
+skew = Vector2(-0.3, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+skew = Vector2(0.3, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
+skew = Vector2(0.3, 0)
+
+[node name="Main" type="Node" unique_id=1645383746]
+
+[node name="Game" type="Node2D" parent="." unique_id=1354740046]
+
+[node name="Stadium" type="StaticBody2D" parent="Game" unique_id=1949684580]
 script = ExtResource("2_o6xl0")
 
-[node name="BoundingCircle" type="CollisionPolygon2D" parent="Stadium" unique_id=1333282430]
+[node name="BoundingCircle" type="CollisionPolygon2D" parent="Game/Stadium" unique_id=1333282430]
 build_mode = 1
 polygon = PackedVector2Array(400, 0, 396.57794, 52.210476, 386.37033, 103.52762, 369.55182, 153.07338, 346.41016, 200, 317.34134, 243.50458, 282.8427, 282.8427, 243.50458, 317.34134, 200, 346.41016, 153.07338, 369.55182, 103.52762, 386.37033, 52.210476, 396.57794, 2.4492127e-14, 400, -52.210476, 396.57794, -103.52762, 386.37033, -153.07338, 369.55182, -200, 346.41016, -243.50458, 317.34134, -282.8427, 282.8427, -317.34134, 243.50458, -346.41016, 200, -369.55182, 153.07338, -386.37033, 103.52762, -396.57794, 52.210476, -400, 4.8984254e-14, -396.57794, -52.210476, -386.37033, -103.52762, -369.55182, -153.07338, -346.41016, -200, -317.34134, -243.50458, -282.8427, -282.8427, -243.50458, -317.34134, -200, -346.41016, -153.07338, -369.55182, -103.52762, -386.37033, -52.210476, -396.57794, -7.347638e-14, -400, 52.210476, -396.57794, 103.52762, -386.37033, 153.07338, -369.55182, 200, -346.41016, 243.50458, -317.34134, 282.8427, -282.8427, 317.34134, -243.50458, 346.41016, -200, 369.55182, -153.07338, 386.37033, -103.52762, 396.57794, -52.210476)
 script = ExtResource("3_tipki")
 radius = 400.0
 vertex_count = 48
 
-[node name="Sprite2D" type="Sprite2D" parent="Stadium" unique_id=1494063978]
+[node name="Sprite2D" type="Sprite2D" parent="Game/Stadium" unique_id=1494063978]
 texture = ExtResource("4_85g3d")
 
-[node name="CenterPoint" type="Marker2D" parent="Stadium" unique_id=122242584]
+[node name="CenterPoint" type="Marker2D" parent="Game/Stadium" unique_id=122242584]
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1737888755]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1153821311]
 
-[node name="Statistics" type="CanvasLayer" parent="Node2D" unique_id=81392088]
-offset = Vector2(0, 720)
-transform = Transform2D(1, 0, 0, 1, 0, 720)
-script = ExtResource("6_ya4ey")
+[node name="TopBar" type="Control" parent="UI" unique_id=807385907]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
 
-[node name="BuffContainer" type="VBoxContainer" parent="Node2D/Statistics" unique_id=658678206]
-offset_left = 400.0
-offset_right = 489.0
-offset_bottom = 45.0
-alignment = 1
+[node name="HealthBars" type="HBoxContainer" parent="UI/TopBar" unique_id=886182231]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+script = ExtResource("4_o6xl0")
 
-[node name="Buffs" type="Label" parent="Node2D/Statistics/BuffContainer" unique_id=998920996]
+[node name="PlayerHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=665877522]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_fykyv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+value = 100.0
+script = ExtResource("5_tipki")
+
+[node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "GAME READY"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("6_tipki")
+
+[node name="EnemyHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=108350148]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
+theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
+value = 100.0
+fill_mode = 1
+
+[node name="BottomBar" type="Control" parent="UI" unique_id=1932807687]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="StatusEffects" type="HBoxContainer" parent="UI/BottomBar" unique_id=104176442]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BuffContainer" type="VBoxContainer" parent="UI/BottomBar/StatusEffects" unique_id=658678206]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("6_tefeu")
+
+[node name="Buffs" type="Label" parent="UI/BottomBar/StatusEffects/BuffContainer" unique_id=998920996]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Buffs:"
-horizontal_alignment = 3
+horizontal_alignment = 1
 
-[node name="DebuffContainer" type="VBoxContainer" parent="Node2D/Statistics" unique_id=1228967091]
-offset_left = 1400.0
-offset_right = 1530.0
-offset_bottom = 45.0
-alignment = 1
+[node name="DebuffContainer" type="VBoxContainer" parent="UI/BottomBar/StatusEffects" unique_id=1228967091]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("7_o6xl0")
 
-[node name="Debuffs" type="Label" parent="Node2D/Statistics/DebuffContainer" unique_id=254748179]
+[node name="Debuffs" type="Label" parent="UI/BottomBar/StatusEffects/DebuffContainer" unique_id=254748179]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Debuffs:"
