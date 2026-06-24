@@ -36,8 +36,6 @@ var damage_cooldown_timer: float = 0.0
 var center_node: Marker2D
 @onready var sprite: Sprite2D = $Sprite2D
 
-signal health_changed(role, damage, current_health, max_health)
-
 func _ready() -> void:
 	current_health = max_health
 	current_stamina = max_stamina
@@ -119,12 +117,8 @@ func take_damage(amount: float) -> void:
 	var role = "Enemy" if is_in_group("enemies") else "Player"
 	print(role, " took ", int(amount), " damage! Remaining HP: ", current_health)
 	
-	health_changed.emit(role, amount, current_health, max_health)
-	
 	if current_health <= 0.0:
 		die()
-		health_changed.emit(role, amount, 0.0, max_health)
-
 
 func die() -> void:
 	var role = "Enemy" if is_in_group("enemies") else "Player"

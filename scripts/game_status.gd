@@ -1,46 +1,43 @@
 extends Label
 
-var playerBladeRef: RigidBody2D
-var enemyBladeRef: RigidBody2D
-
 var isOver = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_node("/root/Main/Game/Stadium").blade_created.connect(_on_blade_created)
 	get_node("/root/Main/Game/Stadium").blade_reset.connect(_on_blade_reset)
 
-func _on_blade_created(role, blade):
-	if role == "Player":
-		playerBladeRef = blade
-	elif role == "Enemy":
-		enemyBladeRef = blade
-	
-	if playerBladeRef:
-		playerBladeRef.health_changed.connect(_on_health_changed)
-	if enemyBladeRef:
-		enemyBladeRef.health_changed.connect(_on_health_changed)
-	
 func _on_blade_reset():
 	self.text = "GAME READY"
+	# Reset back to white text
+	if self.label_settings:
+		self.label_settings.font_color = Color.WHITE
 	isOver = false
 
-func _on_health_changed(role, amount, current_health, max_health):
-	if !isOver:
-		var labelSetting = LabelSettings.new()
-		self.text = "GAME IN PROGRESS"
+func _process(_delta: float) -> void:
+	if isOver:
+		return
+		
+	# Find the current state of both combatants
+	var players = get_tree().get_nodes_in_group("player")
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	
+	var is_player_alive = players.size() > 0 and is_instance_valid(players[0])
+	var is_enemy_alive = enemies.size() > 0 and is_instance_valid(enemies[0])
+	
+	if is_player_alive and is_enemy_alive:
+		if self.text == "GAME READY":
+			self.text = "GAME IN PROGRESS"
 
-		if role == "Player" and current_health <= 0.0:
+	elif self.text == "GAME IN PROGRESS":
+		var labelSetting = LabelSettings.new()
+		
+		if not is_player_alive:
 			self.text = "GAME OVER"
-			labelSetting.font_color = Color.RED 
+			labelSetting.font_color = Color.RED
 			isOver = true
-		if role == "Enemy" and current_health <= 0.0:
+			
+		elif not is_enemy_alive:
 			self.text = "YOU WON!"
-			labelSetting.font_color = Color.YELLOW 
+			labelSetting.font_color = Color.YELLOW
+			isOver = true
 			
 		self.label_settings = labelSetting
-
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

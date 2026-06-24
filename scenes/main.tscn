@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/game/circle_generator.gd" id="3_tipki"]
 [ext_resource type="Texture2D" uid="uid://c0uhrt47yoql6" path="res://assets/stadium.png" id="4_85g3d"]
 [ext_resource type="Script" uid="uid://db0ni15wwm12i" path="res://scripts/ui/health_bars.gd" id="4_o6xl0"]
-[ext_resource type="Script" uid="uid://cnhs0fhuw8weo" path="res://scripts/ui/player_hp.gd" id="5_tipki"]
 [ext_resource type="Script" uid="uid://d3opvvqjpqr6k" path="res://scripts/ui/buff_container.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dqjeh4wmeyqoo" path="res://scripts/game_status.gd" id="6_tipki"]
 [ext_resource type="Script" uid="uid://bohpivf5nojl5" path="res://scripts/ui/debuff_container.gd" id="7_o6xl0"]
@@ -94,7 +93,6 @@ size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_fykyv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
 value = 100.0
-script = ExtResource("5_tipki")
 
 [node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
 custom_minimum_size = Vector2(150, 0)

@@ -31,22 +31,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			var distance = mouse_global.distance_to(center_global)
 			
 			if distance < $BoundingCircle.radius:
-				# Clear previous match remnants
-				var prevPlayerBlade = get_tree().current_scene.get_node("PlayerBlade")
-				if prevPlayerBlade:
-					prevPlayerBlade.free()
-				var prevEnemyBlade = get_tree().current_scene.get_node("EnemyBlade")
-				if prevEnemyBlade:
-					prevEnemyBlade.free()
+				# --- TOTAL ARENA CLEANUP USING GROUPS ---
+				var active_players = get_tree().get_nodes_in_group("player")
+				for p in active_players:
+					p.remove_from_group("player") # Instantly untag it so UI ignores it
+					p.queue_free()
+					
+				var active_enemies = get_tree().get_nodes_in_group("enemies")
+				for e in active_enemies:
+					e.remove_from_group("enemies") # Instantly untag it so UI ignores it
+					e.queue_free()
 					
 				blade_reset.emit()
 				
-				# Define safe bounds so they don't spawn right on the wall or dead-center
+				# --- DEFINE SAFE BOUNDS AND SPAWN NEW BLADES ---
 				var min_spawn_dist = 100.0
 				var max_spawn_dist = $BoundingCircle.radius - 50.0
 				
 				# --- RANDOMIZE USER POSITION (Bottom Half) ---
-				# Angles from 0 to PI radians point downwards in Godot's 2D coordinate space
 				var user_angle = randf_range(0.0, PI)
 				var user_dist = randf_range(min_spawn_dist, max_spawn_dist)
 				var user_offset = Vector2(cos(user_angle), sin(user_angle)) * user_dist
@@ -59,7 +61,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				blade_created.emit("Player", user_blade)
 				
 				# --- RANDOMIZE ENEMY POSITION (Top Half) ---
-				# Angles from PI to 2*PI radians point upwards
 				var enemy_angle = randf_range(PI, 2.0 * PI)
 				var enemy_dist = randf_range(min_spawn_dist, max_spawn_dist)
 				var enemy_offset = Vector2(cos(enemy_angle), sin(enemy_angle)) * enemy_dist
@@ -71,6 +72,5 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_tree().current_scene.add_child(enemy_blade)
 				blade_created.emit("Enemy", enemy_blade)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
