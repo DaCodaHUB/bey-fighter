@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0uhrt47yoql6"
-path="res://.godot/imported/stadium.png-bf97ea476d2ec36ef41be76b64188fc2.ctex"
+uid="uid://cvle36mu55jer"
+path="res://.godot/imported/charge-ui.png-3350188fee692d73f263b0ec127185b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stadium.png"
-dest_files=["res://.godot/imported/stadium.png-bf97ea476d2ec36ef41be76b64188fc2.ctex"]
+source_file="res://assets/charge-ui.png"
+dest_files=["res://.godot/imported/charge-ui.png-3350188fee692d73f263b0ec127185b3.ctex"]
 
 [params]
 

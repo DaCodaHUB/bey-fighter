@@ -5,16 +5,11 @@ var beybladeScene = preload("res://scenes/beyblade.tscn")
 var localCollisionRect: Rect2
 var globalCollisionRect: Rect2
 
-var transform_vector = Vector2(920, 600)
-
 signal blade_created(role, blade)
 signal blade_reset()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	global_position = Vector2(transform_vector.x, transform_vector.y)
-	
 	localCollisionRect = Rect2($BoundingCircle.polygon[0], Vector2.ZERO)
 
 	for p in $BoundingCircle.polygon:
@@ -57,6 +52,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				user_blade.name = "PlayerBlade"
 				user_blade.add_to_group("player")
 				user_blade.global_position = center_global + user_offset
+				
+				if user_blade.has_node("Sprite2D"):
+					user_blade.get_node("Sprite2D").texture = load("res://assets/beychip-25.png")
+				
 				get_tree().current_scene.add_child(user_blade)
 				blade_created.emit("Player", user_blade)
 				
@@ -69,8 +68,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				enemy_blade.name = "EnemyBlade"
 				enemy_blade.add_to_group("enemies")
 				enemy_blade.global_position = center_global + enemy_offset
+				
+				if enemy_blade.has_node("Sprite2D"):
+					enemy_blade.get_node("Sprite2D").texture = load("res://assets/beychip-5.png")
+				
 				get_tree().current_scene.add_child(enemy_blade)
 				blade_created.emit("Enemy", enemy_blade)
-
-func _process(delta: float) -> void:
-	pass
