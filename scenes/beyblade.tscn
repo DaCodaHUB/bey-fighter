@@ -5,12 +5,12 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tbgi4"]
 friction = 0.05
-bounce = 0.9
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljcpu"]
 radius = 51.662365
 
-[node name="Beyblade" type="RigidBody2D" unique_id=707923255]
+[node name="Beyblade" type="RigidBody2D" unique_id=707923255 groups=["beys"]]
 physics_material_override = SubResource("PhysicsMaterial_tbgi4")
 contact_monitor = true
 max_contacts_reported = 4
@@ -23,3 +23,5 @@ texture = ExtResource("1_rsb3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213996697]
 shape = SubResource("CircleShape2D_ljcpu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
