@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Control
 
 func _process(_delta: float) -> void:
 	# Check if we are still waiting for the match to start

@@ -78,18 +78,22 @@ anchor_right = 1.0
 grow_horizontal = 2
 mouse_filter = 2
 
-[node name="HealthBars" type="HBoxContainer" parent="UI/TopBar" unique_id=886182231]
+[node name="HealthBars" type="Control" parent="UI/TopBar" unique_id=2050958388]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 100.0
 grow_horizontal = 2
-theme_override_constants/separation = 20
 script = ExtResource("4_o6xl0")
 
 [node name="PlayerHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=665877522]
 custom_minimum_size = Vector2(600, 50)
-layout_mode = 2
+layout_mode = 0
+offset_left = 74.0
+offset_top = 45.0
+offset_right = 674.0
+offset_bottom = 95.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_fykyv")
@@ -98,7 +102,10 @@ value = 100.0
 
 [node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
 custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
+layout_mode = 0
+offset_left = 885.0
+offset_right = 1035.0
+offset_bottom = 100.0
 size_flags_vertical = 1
 text = "GAME READY"
 horizontal_alignment = 1
@@ -108,7 +115,11 @@ script = ExtResource("6_tipki")
 
 [node name="EnemyHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=108350148]
 custom_minimum_size = Vector2(600, 50)
-layout_mode = 2
+layout_mode = 0
+offset_left = 1261.0
+offset_top = 48.0
+offset_right = 1861.0
+offset_bottom = 98.0
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
