@@ -54,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				user_blade.global_position = center_global + user_offset
 				
 				if user_blade.has_node("Sprite2D"):
-					user_blade.get_node("Sprite2D").texture = load("res://assets/beychip-25.png")
+					user_blade.get_node("Sprite2D").texture = load("res://assets/ui/beychip-25.png")
 				
 				get_tree().current_scene.add_child(user_blade)
 				blade_created.emit("Player", user_blade)
@@ -70,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				enemy_blade.global_position = center_global + enemy_offset
 				
 				if enemy_blade.has_node("Sprite2D"):
-					enemy_blade.get_node("Sprite2D").texture = load("res://assets/beychip-5.png")
+					enemy_blade.get_node("Sprite2D").texture = load("res://assets/ui/beychip-5.png")
 				
 				get_tree().current_scene.add_child(enemy_blade)
 				blade_created.emit("Enemy", enemy_blade)

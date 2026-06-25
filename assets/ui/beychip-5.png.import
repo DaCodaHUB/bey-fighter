@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw74i7ymrb2qw"
-path="res://.godot/imported/beychip-25.png-37711129d555772459a1c4e1e08642f4.ctex"
+uid="uid://dsloexen0mxxu"
+path="res://.godot/imported/beychip-5.png-e1fd40579692e1c887863148683c33d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/beychip-25.png"
-dest_files=["res://.godot/imported/beychip-25.png-37711129d555772459a1c4e1e08642f4.ctex"]
+source_file="res://assets/ui/beychip-5.png"
+dest_files=["res://.godot/imported/beychip-5.png-e1fd40579692e1c887863148683c33d2.ctex"]
 
 [params]
 

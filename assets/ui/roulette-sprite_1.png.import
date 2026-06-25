@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpk7c232clkoi"
-path="res://.godot/imported/beychip-50.png-48962b2e55bccf62a5fa213e625c256b.ctex"
+uid="uid://gstqkw41yyt6"
+path="res://.godot/imported/roulette-sprite_1.png-8045a9c09b434adfd69eb7b2e4379732.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/beychip-50.png"
-dest_files=["res://.godot/imported/beychip-50.png-48962b2e55bccf62a5fa213e625c256b.ctex"]
+source_file="res://assets/ui/roulette-sprite_1.png"
+dest_files=["res://.godot/imported/roulette-sprite_1.png-8045a9c09b434adfd69eb7b2e4379732.ctex"]
 
 [params]
 

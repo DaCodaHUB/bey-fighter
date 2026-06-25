@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://jxaejkrn8hmu"]
 
 [ext_resource type="Script" uid="uid://bdsoqe4w37fvy" path="res://scripts/game/stadium.gd" id="2_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://gstqkw41yyt6" path="res://assets/roulette-sprite_1.png" id="3_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://gstqkw41yyt6" path="res://assets/ui/roulette-sprite_1.png" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/game/circle_generator.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://db0ni15wwm12i" path="res://scripts/ui/health_bars.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://d3opvvqjpqr6k" path="res://scripts/ui/buff_container.gd" id="6_tefeu"]

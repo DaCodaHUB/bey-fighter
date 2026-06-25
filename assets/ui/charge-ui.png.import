@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2yl7uw3c5m2w"
-path="res://.godot/imported/beychip-100.png-4cadf55a82a22ca885e86ecffcebdf91.ctex"
+uid="uid://cvle36mu55jer"
+path="res://.godot/imported/charge-ui.png-9c0a5ade2fc97840bc0c3a5d7f796edd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/beychip-100.png"
-dest_files=["res://.godot/imported/beychip-100.png-4cadf55a82a22ca885e86ecffcebdf91.ctex"]
+source_file="res://assets/ui/charge-ui.png"
+dest_files=["res://.godot/imported/charge-ui.png-9c0a5ade2fc97840bc0c3a5d7f796edd.ctex"]
 
 [params]
 
