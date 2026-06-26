@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cntjysi0bw4iv" path="res://assets/ui/stamina-ui.png" id="7_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://fu88wcp3guxt" path="res://assets/ui/stamina-ui_2.png" id="8_eb6dy"]
 [ext_resource type="Script" uid="uid://cg3xrc82momsg" path="res://scripts/ui/inputs.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://d4d7h8ihy4p0t" path="res://scripts/ui/pause_menu.gd" id="11_pause"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 content_margin_left = 0.0
@@ -95,11 +96,13 @@ texture_progress = ExtResource("8_eb6dy")
 
 [node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
 custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(600, -1)
 layout_mode = 0
 offset_left = 885.0
-offset_right = 1035.0
-offset_bottom = 100.0
+offset_right = 1087.0
+offset_bottom = 45.0
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
 text = "GAME READY"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -228,3 +231,65 @@ text = "  Space
 [node name="SpaceBackground" type="ColorRect" parent="UI/Inputs/KeySpace" unique_id=651424354]
 visible = false
 layout_mode = 2
+
+[node name="PauseMenu" type="Control" parent="UI" unique_id=1426473927]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_pause")
+
+[node name="DimBackground" type="ColorRect" parent="UI/PauseMenu" unique_id=708725000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/PauseMenu" unique_id=873301728]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/CenterContainer" unique_id=626286968]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="PausedLabel" type="Label" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1301150701]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1613176300]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1088798142]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1205926828]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="HintLabel" type="Label" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1374487745]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Press Escape to resume"
+horizontal_alignment = 1

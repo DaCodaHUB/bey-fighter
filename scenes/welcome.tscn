@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://4vbb5ntvjw6q"]
+
+[ext_resource type="Script" uid="uid://c8yaov2mopcs8" path="res://scripts/ui/welcome.gd" id="1_welcome"]
+[ext_resource type="Texture2D" uid="uid://7opvyuhyjeec" path="res://icon.svg" id="2_logo"]
+
+[node name="Welcome" type="Control" unique_id=1085038582]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_welcome")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1381864853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.20978543, 0.5195375, 0.87493455, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=422597591]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1172126475]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="Logo" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=242570041]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("2_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Container" type="Container" parent="CenterContainer/VBoxContainer" unique_id=1815276870]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=389044770]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="QuitGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1942402038]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
