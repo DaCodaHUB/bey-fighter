@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://db0ni15wwm12i" path="res://scripts/ui/health_bars.gd" id="4_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://c71vrmbn7yupm" path="res://assets/ui/health-ui.png" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://dg41lbohv02a5" path="res://assets/ui/health-ui_2.png" id="6_choun"]
-[ext_resource type="Script" uid="uid://dqjeh4wmeyqoo" path="res://scripts/game_status.gd" id="6_tipki"]
 [ext_resource type="Texture2D" uid="uid://cntjysi0bw4iv" path="res://assets/ui/stamina-ui.png" id="7_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://fu88wcp3guxt" path="res://assets/ui/stamina-ui_2.png" id="8_eb6dy"]
 [ext_resource type="Script" uid="uid://cg3xrc82momsg" path="res://scripts/ui/inputs.gd" id="10_choun"]
@@ -94,20 +93,19 @@ offset_bottom = 64.0
 value = 100.0
 texture_progress = ExtResource("8_eb6dy")
 
-[node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
+[node name="GameStatus" type="RichTextLabel" parent="UI/TopBar/HealthBars" unique_id=327405115]
 custom_minimum_size = Vector2(150, 0)
 custom_maximum_size = Vector2(600, -1)
 layout_mode = 0
-offset_left = 885.0
-offset_right = 1087.0
-offset_bottom = 45.0
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
+offset_left = 730.0
+offset_top = -1.0
+offset_right = 1204.0
+offset_bottom = 113.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
 text = "GAME READY"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
-script = ExtResource("6_tipki")
 
 [node name="EnemyHP" type="Control" parent="UI/TopBar/HealthBars" unique_id=996312527]
 custom_minimum_size = Vector2(600, 50)
@@ -270,9 +268,12 @@ theme_override_font_sizes/font_size = 48
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1613176300]
-custom_minimum_size = Vector2(0, 100)
+[node name="RestartButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1650525763]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "Restart"
 
 [node name="ResumeButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1088798142]
 custom_minimum_size = Vector2(300, 100)

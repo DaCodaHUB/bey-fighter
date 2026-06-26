@@ -1,7 +1,7 @@
 extends Control
 
-@onready var _start_button: Button = $CenterContainer/VBoxContainer/StartGameButton
-@onready var _quit_button: Button = $CenterContainer/VBoxContainer/QuitGameButton
+@onready var _start_button: Button = $StartGameButton
+@onready var _quit_button: Button = $QuitGameButton
 
 
 func _ready() -> void:

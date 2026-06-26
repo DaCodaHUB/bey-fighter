@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameState="*uid://dsrd2lycd2ku8"
 SceneTransition="*res://scripts/autoload/scene_transition.gd"
+GlobalSettings="*uid://brohb5mowwemw"
 
 [display]
 

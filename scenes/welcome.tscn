@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4vbb5ntvjw6q"]
 
 [ext_resource type="Script" uid="uid://c8yaov2mopcs8" path="res://scripts/ui/welcome.gd" id="1_welcome"]
-[ext_resource type="Texture2D" uid="uid://7opvyuhyjeec" path="res://icon.svg" id="2_logo"]
+[ext_resource type="Texture2D" uid="uid://csyr7p74s5qhh" path="res://assets/ui/title.png" id="2_25jh2"]
 
 [node name="Welcome" type="Control" unique_id=1085038582]
 layout_mode = 3
@@ -20,44 +20,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.20978543, 0.5195375, 0.87493455, 1)
+color = Color(0.20784314, 0.5176471, 0.8745098, 0)
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=422597591]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1172126475]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 24
-
-[node name="Logo" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=242570041]
+[node name="Logo" type="TextureRect" parent="." unique_id=242570041]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-texture = ExtResource("2_logo")
+layout_mode = 0
+offset_left = 479.0
+offset_top = 41.0
+offset_right = 1406.0
+offset_bottom = 662.0
+texture = ExtResource("2_25jh2")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Container" type="Container" parent="CenterContainer/VBoxContainer" unique_id=1815276870]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="StartGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=389044770]
+[node name="StartGameButton" type="Button" parent="." unique_id=389044770]
 custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
+layout_mode = 0
+offset_left = 784.0
+offset_top = 665.0
+offset_right = 1084.0
+offset_bottom = 765.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
-[node name="QuitGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1942402038]
+[node name="QuitGameButton" type="Button" parent="." unique_id=1942402038]
 custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
+layout_mode = 0
+offset_left = 786.0
+offset_top = 806.0
+offset_right = 1086.0
+offset_bottom = 906.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
