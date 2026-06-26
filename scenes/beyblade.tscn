@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bg77ri7qhxxkx"]
 
 [ext_resource type="Script" uid="uid://coowyu4fs5wjh" path="res://scripts/game/beyblade.gd" id="1_e03yv"]
+[ext_resource type="AudioStream" uid="uid://cer1e1rkl8gas" path="res://assets/effects/BeybladeSim_Combat_Hit_Heavy.wav" id="2_qfx1t"]
+[ext_resource type="AudioStream" uid="uid://dd6hb2o145pjb" path="res://assets/effects/BeybladeSim_Combat_Hit_Normal.wav" id="3_nq6h0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tbgi4"]
 friction = 0.05
@@ -21,5 +23,11 @@ scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213996697]
 shape = SubResource("CircleShape2D_ljcpu")
+
+[node name="HeavyHitSound" type="AudioStreamPlayer2D" parent="." unique_id=1452257015]
+stream = ExtResource("2_qfx1t")
+
+[node name="NormalHitSound" type="AudioStreamPlayer2D" parent="." unique_id=1587628017]
+stream = ExtResource("3_nq6h0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

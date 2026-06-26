@@ -13,7 +13,7 @@ func _on_stadium_blade_reset() -> void:
 	match_time_left = TIME_LAPSE
 	is_match_active = false
 	if has_node("GameStatus"):
-		$GameStatus.text = "PRESS START TO PLAY" # Standard white text by default
+		$GameStatus.text = "PRESS START TO PLAY"
 
 func _process(delta: float) -> void:
 	var players = get_tree().get_nodes_in_group("player")
@@ -29,7 +29,6 @@ func _process(delta: float) -> void:
 		if match_time_left <= 0.0:
 			is_match_active = false
 			if has_node("GameStatus"):
-				# 🌟 Clear the theme block and apply red
 				$GameStatus.remove_theme_color_override("default_color")
 				$GameStatus.text = "[color=#ff0000]Lose[/color]"
 				
@@ -55,6 +54,13 @@ func _process(delta: float) -> void:
 	if is_match_active and match_time_left > 0.0:
 		if enemies.size() == 0 or (enemies.size() > 0 and not is_instance_valid(enemies[0])):
 			is_match_active = false
+			
+			if has_node("EnemyHP/EnemyBarFill"):
+				$EnemyHP/EnemyBarFill.value = 0
+			
+			if has_node("DeathSound"):
+				$DeathSound.play()
+				
 			if has_node("GameStatus"):
 				# 🌟 Clear the theme block and apply green
 				$GameStatus.remove_theme_color_override("default_color")

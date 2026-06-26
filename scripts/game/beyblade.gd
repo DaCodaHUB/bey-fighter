@@ -150,10 +150,12 @@ func _on_body_entered(body: Node) -> void:
 				
 				if player_speed >= enemy_speed:
 					damage_to_deal = clamp(player_speed * 0.015, 1.5, 12.0)
-					print("STRONG HIT! Your Speed: ", int(player_speed), " | Enemy Speed: ", int(enemy_speed), " | Damage: ", String.num(damage_to_deal, 1))
+					if has_node("HeavyHitSound"):
+						$HeavyHitSound.play()
 				else:
 					damage_to_deal = 1.0
-					print("WEAK HIT! Your Speed: ", int(player_speed), " | Enemy Speed: ", int(enemy_speed), " | Damage: 1.0")
+					if has_node("NormalHitSound"):
+						$NormalHitSound.play()
 				
 				body.take_damage(damage_to_deal)
 				damage_cooldown_timer = damage_cooldown_duration

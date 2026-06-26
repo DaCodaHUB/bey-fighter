@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c8yaov2mopcs8" path="res://scripts/ui/welcome.gd" id="1_welcome"]
 [ext_resource type="Texture2D" uid="uid://csyr7p74s5qhh" path="res://assets/ui/title.png" id="2_25jh2"]
+[ext_resource type="AudioStream" uid="uid://b6x1h6462is6h" path="res://assets/musics/Beyblade Roulette Main Play Theme.mp3" id="3_b1rs5"]
+[ext_resource type="AudioStream" uid="uid://c8f54jqp8uiww" path="res://assets/effects/BeybladeSim_UI_Confirm.wav" id="4_1k3ta"]
+[ext_resource type="AudioStream" uid="uid://bq24q4l6gcdty" path="res://assets/effects/BeybladeSim_UI_Cancel.wav" id="5_v60w2"]
 
 [node name="Welcome" type="Control" unique_id=1085038582]
 layout_mode = 3
@@ -54,3 +57,13 @@ offset_bottom = 906.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="MainTheme" type="AudioStreamPlayer2D" parent="." unique_id=176862445]
+stream = ExtResource("3_b1rs5")
+autoplay = true
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="." unique_id=260613045]
+stream = ExtResource("4_1k3ta")
+
+[node name="QuitSound" type="AudioStreamPlayer2D" parent="." unique_id=1583715883]
+stream = ExtResource("5_v60w2")

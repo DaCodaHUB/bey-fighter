@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6x1h6462is6h"
+path="res://.godot/imported/Beyblade Roulette Main Play Theme.mp3-b8ce551841b403a8bd631a3fe92eca3a.mp3str"
+
+[deps]
+
+source_file="res://assets/musics/Beyblade Roulette Main Play Theme.mp3"
+dest_files=["res://.godot/imported/Beyblade Roulette Main Play Theme.mp3-b8ce551841b403a8bd631a3fe92eca3a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

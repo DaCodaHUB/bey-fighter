@@ -8,8 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dg41lbohv02a5" path="res://assets/ui/health-ui_2.png" id="6_choun"]
 [ext_resource type="Texture2D" uid="uid://cntjysi0bw4iv" path="res://assets/ui/stamina-ui.png" id="7_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://fu88wcp3guxt" path="res://assets/ui/stamina-ui_2.png" id="8_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://d4ckat3pahwnm" path="res://assets/effects/BeybladeSim_Death.wav" id="9_trceg"]
 [ext_resource type="Script" uid="uid://cg3xrc82momsg" path="res://scripts/ui/inputs.gd" id="10_choun"]
+[ext_resource type="AudioStream" uid="uid://c8f54jqp8uiww" path="res://assets/effects/BeybladeSim_UI_Confirm.wav" id="11_eb6dy"]
 [ext_resource type="Script" uid="uid://d4d7h8ihy4p0t" path="res://scripts/ui/pause_menu.gd" id="11_pause"]
+[ext_resource type="AudioStream" uid="uid://bq24q4l6gcdty" path="res://assets/effects/BeybladeSim_UI_Cancel.wav" id="12_trceg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
 content_margin_left = 0.0
@@ -132,6 +135,9 @@ offset_bottom = 107.0
 value = 100.0
 texture_progress = ExtResource("6_choun")
 
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="UI/TopBar/HealthBars" unique_id=711558562]
+stream = ExtResource("9_trceg")
+
 [node name="Inputs" type="Control" parent="UI" unique_id=1497359564]
 layout_mode = 3
 anchors_preset = 2
@@ -250,47 +256,63 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="CenterContainer" type="CenterContainer" parent="UI/PauseMenu" unique_id=873301728]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/CenterContainer" unique_id=626286968]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="PausedLabel" type="Label" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1301150701]
-layout_mode = 2
+[node name="PausedLabel" type="Label" parent="UI/PauseMenu" unique_id=1301150701]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 279.0
+offset_right = 1110.0
+offset_bottom = 346.0
 theme_override_font_sizes/font_size = 48
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1650525763]
+[node name="RestartButton" type="Button" parent="UI/PauseMenu" unique_id=1650525763]
 custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
+layout_mode = 0
+offset_left = 810.0
+offset_top = 378.0
+offset_right = 1110.0
+offset_bottom = 478.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Restart"
 
-[node name="ResumeButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1088798142]
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=1088798142]
 custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
+layout_mode = 0
+offset_left = 810.0
+offset_top = 510.0
+offset_right = 1110.0
+offset_bottom = 610.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Resume"
 
-[node name="QuitButton" type="Button" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1205926828]
+[node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=1205926828]
 custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
+layout_mode = 0
+offset_left = 810.0
+offset_top = 642.0
+offset_right = 1110.0
+offset_bottom = 742.0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="HintLabel" type="Label" parent="UI/PauseMenu/CenterContainer/VBoxContainer" unique_id=1374487745]
-layout_mode = 2
+[node name="HintLabel" type="Label" parent="UI/PauseMenu" unique_id=1374487745]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 774.0
+offset_right = 1110.0
+offset_bottom = 800.0
 theme_override_font_sizes/font_size = 18
 text = "Press Escape to resume"
 horizontal_alignment = 1
+
+[node name="ConfirmSound" type="AudioStreamPlayer2D" parent="UI/PauseMenu" unique_id=1112908127]
+process_mode = 3
+stream = ExtResource("11_eb6dy")
+
+[node name="CancelSound" type="AudioStreamPlayer2D" parent="UI/PauseMenu" unique_id=389489726]
+process_mode = 3
+stream = ExtResource("12_trceg")
