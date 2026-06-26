@@ -4,56 +4,36 @@
 [ext_resource type="Texture2D" uid="uid://gstqkw41yyt6" path="res://assets/ui/roulette-sprite_1.png" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://cpya8acae3jdj" path="res://scripts/game/circle_generator.gd" id="3_tipki"]
 [ext_resource type="Script" uid="uid://db0ni15wwm12i" path="res://scripts/ui/health_bars.gd" id="4_o6xl0"]
-[ext_resource type="Script" uid="uid://d3opvvqjpqr6k" path="res://scripts/ui/buff_container.gd" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c71vrmbn7yupm" path="res://assets/ui/health-ui.png" id="5_85g3d"]
+[ext_resource type="Texture2D" uid="uid://dg41lbohv02a5" path="res://assets/ui/health-ui_2.png" id="6_choun"]
 [ext_resource type="Script" uid="uid://dqjeh4wmeyqoo" path="res://scripts/game_status.gd" id="6_tipki"]
-[ext_resource type="Script" uid="uid://bohpivf5nojl5" path="res://scripts/ui/debuff_container.gd" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://cntjysi0bw4iv" path="res://assets/ui/stamina-ui.png" id="7_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://fu88wcp3guxt" path="res://assets/ui/stamina-ui_2.png" id="8_eb6dy"]
+[ext_resource type="Script" uid="uid://cg3xrc82momsg" path="res://scripts/ui/inputs.gd" id="10_choun"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fykyv"]
-skew = Vector2(-0.3, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
-bg_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
-skew = Vector2(-0.3, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
-skew = Vector2(0.3, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
-bg_color = Color(0.19607843, 0.8039216, 0.19607843, 1)
-skew = Vector2(0.3, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Main" type="Node" unique_id=1645383746]
 
 [node name="Game" type="Node2D" parent="." unique_id=1354740046]
 
 [node name="Stadium" type="StaticBody2D" parent="Game" unique_id=1949684580]
-position = Vector2(967, 550)
+position = Vector2(967, 562)
 script = ExtResource("2_o6xl0")
 
 [node name="BoundingCircle" type="CollisionPolygon2D" parent="Game/Stadium" unique_id=1333282430]
@@ -67,7 +47,7 @@ vertex_count = 48
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_o6xl0")
 
-[node name="CenterPoint" type="Marker2D" parent="Game/Stadium" unique_id=122242584]
+[node name="CenterPoint" type="Marker2D" parent="Game/Stadium" unique_id=122242584 groups=["center"]]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1153821311]
 
@@ -83,22 +63,35 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 100.0
+offset_top = 23.0
+offset_bottom = 306.0
 grow_horizontal = 2
 script = ExtResource("4_o6xl0")
 
-[node name="PlayerHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=665877522]
-custom_minimum_size = Vector2(600, 50)
-layout_mode = 0
-offset_left = 74.0
+[node name="PlayerStamina" type="Control" parent="UI/TopBar/HealthBars" unique_id=40804566]
+anchors_preset = 0
 offset_top = 45.0
-offset_right = 674.0
-offset_bottom = 95.0
+offset_right = 606.0
+offset_bottom = 153.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_fykyv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+
+[node name="TextureRect" type="TextureRect" parent="UI/TopBar/HealthBars/PlayerStamina" unique_id=2045853547]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -44.0
+offset_right = 607.0
+offset_bottom = 64.0
+texture = ExtResource("7_ya4ey")
+
+[node name="PlayerStaminaFill" type="TextureProgressBar" parent="UI/TopBar/HealthBars/PlayerStamina" unique_id=228108620]
+layout_mode = 0
+offset_left = 69.0
+offset_top = -44.0
+offset_right = 577.0
+offset_bottom = 64.0
 value = 100.0
+texture_progress = ExtResource("8_eb6dy")
 
 [node name="GameStatus" type="Label" parent="UI/TopBar/HealthBars" unique_id=1099397688]
 custom_minimum_size = Vector2(150, 0)
@@ -113,59 +106,125 @@ vertical_alignment = 1
 autowrap_mode = 3
 script = ExtResource("6_tipki")
 
-[node name="EnemyHP" type="ProgressBar" parent="UI/TopBar/HealthBars" unique_id=108350148]
+[node name="EnemyHP" type="Control" parent="UI/TopBar/HealthBars" unique_id=996312527]
 custom_minimum_size = Vector2(600, 50)
-layout_mode = 0
-offset_left = 1261.0
-offset_top = 48.0
-offset_right = 1861.0
-offset_bottom = 98.0
+anchors_preset = 0
+offset_left = 1919.0
+offset_right = 2525.0
+offset_bottom = 108.0
+scale = Vector2(-1, 1)
 size_flags_horizontal = 2
 size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
-theme_override_styles/fill = SubResource("StyleBoxFlat_choun")
+
+[node name="TextureRect" type="TextureRect" parent="UI/TopBar/HealthBars/EnemyHP" unique_id=1723106040]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_85g3d")
+
+[node name="EnemyBarFill" type="TextureProgressBar" parent="UI/TopBar/HealthBars/EnemyHP" unique_id=2105834350]
+layout_mode = 0
+offset_left = 63.0
+offset_top = -1.0
+offset_right = 571.0
+offset_bottom = 107.0
 value = 100.0
-fill_mode = 1
+texture_progress = ExtResource("6_choun")
 
-[node name="BottomBar" type="Control" parent="UI" unique_id=1932807687]
+[node name="Inputs" type="Control" parent="UI" unique_id=1497359564]
 layout_mode = 3
-anchors_preset = 12
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = 2.0
+offset_top = -253.0
+offset_right = 521.0
+offset_bottom = -66.0
 grow_vertical = 0
-mouse_filter = 2
+script = ExtResource("10_choun")
 
-[node name="StatusEffects" type="HBoxContainer" parent="UI/BottomBar" unique_id=104176442]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="KeyW" type="PanelContainer" parent="UI/Inputs" unique_id=1396832968]
+layout_mode = 0
+offset_left = 241.0
+offset_top = -92.0
+offset_right = 303.0
+offset_bottom = -26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
 
-[node name="BuffContainer" type="VBoxContainer" parent="UI/BottomBar/StatusEffects" unique_id=658678206]
-custom_minimum_size = Vector2(0, 200)
+[node name="Label" type="Label" parent="UI/Inputs/KeyW" unique_id=204520222]
 layout_mode = 2
-size_flags_horizontal = 6
-script = ExtResource("6_tefeu")
+theme_override_font_sizes/font_size = 28
+text = "  W"
 
-[node name="Buffs" type="Label" parent="UI/BottomBar/StatusEffects/BuffContainer" unique_id=998920996]
+[node name="WBackground" type="ColorRect" parent="UI/Inputs/KeyW" unique_id=1136287281]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Buffs:"
-horizontal_alignment = 1
 
-[node name="DebuffContainer" type="VBoxContainer" parent="UI/BottomBar/StatusEffects" unique_id=1228967091]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_horizontal = 6
-script = ExtResource("7_o6xl0")
+[node name="KeyA" type="PanelContainer" parent="UI/Inputs" unique_id=1859042358]
+layout_mode = 0
+offset_left = 162.0
+offset_top = -10.0
+offset_right = 224.0
+offset_bottom = 56.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
 
-[node name="Debuffs" type="Label" parent="UI/BottomBar/StatusEffects/DebuffContainer" unique_id=254748179]
+[node name="Label" type="Label" parent="UI/Inputs/KeyA" unique_id=1837277370]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Debuffs:"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+text = "  A"
+
+[node name="ABackground" type="ColorRect" parent="UI/Inputs/KeyA" unique_id=1392607739]
+visible = false
+layout_mode = 2
+
+[node name="KeyS" type="PanelContainer" parent="UI/Inputs" unique_id=1745680230]
+layout_mode = 0
+offset_left = 240.0
+offset_top = -11.0
+offset_right = 302.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+
+[node name="Label" type="Label" parent="UI/Inputs/KeyS" unique_id=105801216]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "  S"
+
+[node name="SBackground" type="ColorRect" parent="UI/Inputs/KeyS" unique_id=1829073313]
+visible = false
+layout_mode = 2
+
+[node name="KeyD" type="PanelContainer" parent="UI/Inputs" unique_id=589670652]
+layout_mode = 0
+offset_left = 318.0
+offset_top = -10.0
+offset_right = 380.0
+offset_bottom = 56.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+
+[node name="Label" type="Label" parent="UI/Inputs/KeyD" unique_id=1158732665]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "  D"
+
+[node name="DBackground" type="ColorRect" parent="UI/Inputs/KeyD" unique_id=1857029533]
+visible = false
+layout_mode = 2
+
+[node name="KeySpace" type="PanelContainer" parent="UI/Inputs" unique_id=284188957]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 71.0
+offset_right = 461.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+
+[node name="Label" type="Label" parent="UI/Inputs/KeySpace" unique_id=1810260880]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "  Space
+"
+
+[node name="SpaceBackground" type="ColorRect" parent="UI/Inputs/KeySpace" unique_id=651424354]
+visible = false
+layout_mode = 2
