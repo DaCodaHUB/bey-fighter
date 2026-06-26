@@ -1,3 +1,3 @@
 extends Node
 
-var match_duration: float = 40.0
+var match_duration: float = 45.0
