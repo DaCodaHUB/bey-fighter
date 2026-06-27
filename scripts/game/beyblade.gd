@@ -18,6 +18,7 @@ var is_overheated: bool = false
 @export var player_control_force: float = 900.0
 @export var max_player_speed: float = 600.0
 @export var boost_multiplier: float = 2.0
+@export var visual_boost_multiplier: float = 5.0
 
 # --- AI TUNING ---
 @export var enemy_center_pull_force: float = 600.0
@@ -47,8 +48,13 @@ func _physics_process(delta: float) -> void:
 	if damage_cooldown_timer > 0:
 		damage_cooldown_timer -= delta
 
-	# Spinning animation
-	angular_velocity = constant_spin_speed * sign(angular_velocity)
+	var active_spin_speed = constant_spin_speed
+	if not is_in_group("enemies"):
+		var has_boost_input = Input.is_action_pressed("boost")
+		if has_boost_input and current_stamina > 0.0 and not is_overheated:
+			active_spin_speed *= visual_boost_multiplier 
+
+	angular_velocity = active_spin_speed * sign(angular_velocity)
 	sprite.rotate(angular_velocity * delta)
 
 # --- INTEGRATED RIGIDBODY PHYSICS SYSTEM ---
