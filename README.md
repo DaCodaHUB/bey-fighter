@@ -54,5 +54,5 @@ The project uses the GL Compatibility renderer and a 1920x1080 viewport with a 1
 
 ## Screenshots
 
-<img width="1272" height="720" alt="Screenshot 2026-06-26 161258" src="https://github.com/user-attachments/assets/b5f0a914-58d7-451d-837a-c36ff11c43e2" />
-<img width="1272" height="717" alt="Screenshot 2026-06-26 161330" src="https://github.com/user-attachments/assets/2f4c5b82-aa0b-4196-bdfc-d78ac4764f72" />
+<img width="1272" height="720" alt="Screenshot 2026-06-26 161258" src="screenshots/613916652-b5f0a914-58d7-451d-837a-c36ff11c43e2.png" />
+<img width="1272" height="717" alt="Screenshot 2026-06-26 161330" src="screenshots/613916669-2f4c5b82-aa0b-4196-bdfc-d78ac4764f72.png" />
