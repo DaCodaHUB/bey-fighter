@@ -33,6 +33,9 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
+        with:
+          # Skip the default "tools" package; install export tools below.
+          packages: ''
 
       - name: Install Android export tools
         run: sdkmanager "platform-tools" "build-tools;35.0.1" "platforms;android-35"
