@@ -1,0 +1,74 @@
+name: Build Windows and Android
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: '4.7'
+
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install Android export tools
+        run: sdkmanager "platform-tools" "build-tools;35.0.1" "platforms;android-35"
+
+      - name: Install Godot and matching export templates
+        run: |
+          export XDG_DATA_HOME="$RUNNER_TEMP/godot-data"
+          echo "XDG_DATA_HOME=$XDG_DATA_HOME" >> "$GITHUB_ENV"
+          echo "XDG_CONFIG_HOME=$RUNNER_TEMP/godot-config" >> "$GITHUB_ENV"
+          release="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          editor="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          curl --fail --location --retry 3 "$release/$editor.zip" -o "$RUNNER_TEMP/godot.zip"
+          curl --fail --location --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
+          mkdir -p "$RUNNER_TEMP/godot-bin" "$XDG_DATA_HOME/godot/export_templates"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot-bin"
+          mv "$RUNNER_TEMP/godot-bin/$editor" "$RUNNER_TEMP/godot-bin/godot"
+          chmod +x "$RUNNER_TEMP/godot-bin/godot"
+          echo "$RUNNER_TEMP/godot-bin" >> "$GITHUB_PATH"
+          unzip -q "$RUNNER_TEMP/templates.tpz" -d "$RUNNER_TEMP/godot-templates"
+          mv "$RUNNER_TEMP/godot-templates/templates" "$XDG_DATA_HOME/godot/export_templates/${GODOT_VERSION}.stable"
+
+      - name: Export EXE and debug APK
+        run: bash ci/build.sh
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v6
+        with:
+          name: BladeGamblers-Windows
+          path: build/windows/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload Android build
+        uses: actions/upload-artifact@v6
+        with:
+          name: BladeGamblers-Android-debug
+          path: build/android/BladeGamblers-debug.apk
+          if-no-files-found: error
+          retention-days: 14

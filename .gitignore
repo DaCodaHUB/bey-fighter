@@ -16,3 +16,7 @@ linux/
 *.apk
 *.exe
 *.zip
+build/
+*.idsig
+*.keystore
+*.jks

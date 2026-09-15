@@ -45,6 +45,30 @@ Boosting consumes stamina. Stamina recharges while you are not boosting, but it 
 
 The project uses the GL Compatibility renderer and a 1920x1080 viewport with a 1280x720 window override.
 
+## GitHub Builds
+
+The **Build Windows and Android** Actions workflow runs on pushes, pull requests,
+and manually through **Actions → Build Windows and Android → Run workflow**.
+It uses Godot 4.7 and downloads matching export templates.
+
+After a successful run, download its artifacts:
+
+- **BladeGamblers-Windows**: extract the archive and run `BladeGamblers.exe`.
+  Game data is embedded in the EXE.
+- **BladeGamblers-Android-debug**: extract and install `BladeGamblers-debug.apk`
+  on an ARM64 Android device.
+
+GitHub generates a fresh debug keystore for every run. No local keystore or
+repository secrets are required, and the keystore is not uploaded. Because each
+run uses a different signing key, uninstall a previous build before installing
+a build from another run; uninstalling removes its local game data. This APK is
+for testing, not Play Store publishing.
+
+CI uses `ci/export-presets.cfg` and `ci/build.sh`; local `export_presets.cfg`
+remains ignored. The script is intended for disposable GitHub Actions checkouts.
+See [Godot's Android export documentation](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)
+for signing and SDK details.
+
 ## Project Structure
 
 - `scenes/` - Godot scenes for the title screen, arena, and beyblade
