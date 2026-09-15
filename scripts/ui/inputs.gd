@@ -1,18 +1,30 @@
 extends Control
 
-func _process(_delta: float) -> void:
-	if has_node("../Inputs"):
-		_update_key_display("../Inputs/KeyW/WBackground", "../Inputs/KeyW/Label", "move_up")
-		_update_key_display("../Inputs/KeyA/ABackground", "../Inputs/KeyA/Label", "move_left")
-		_update_key_display("../Inputs/KeyS/SBackground", "../Inputs/KeyS/Label", "move_down")
-		_update_key_display("../Inputs/KeyD/DBackground", "../Inputs/KeyD/Label", "move_right")
-		_update_key_display("../Inputs/KeySpace/SpaceBackground", "../Inputs/KeySpace/Label", "boost")
+var _normal_textures: Dictionary = {}
 
-func _update_key_display(bg_path: String, label_path: String, action_name: String) -> void:
-	if has_node(bg_path) and has_node(label_path):
-		var bg = get_node(bg_path) as ColorRect
-		
-		if Input.is_action_pressed(action_name):
-			bg.visible = true
+func _ready() -> void:
+	for child in get_children():
+		if child is TouchScreenButton:
+			_normal_textures[child] = child.texture_normal
+			var label := child.get_node_or_null("Label") as Label
+			if label:
+				label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_update_button_display()
+
+func _process(_delta: float) -> void:
+	_update_button_display()
+
+func _update_button_display() -> void:
+	for node in _normal_textures:
+		var button := node as TouchScreenButton
+		var active := button.is_pressed()
+		if not button.action.is_empty():
+			active = active or Input.is_action_pressed(button.action)
+		# Keyboard actions don't set the button's internal touch-pressed state.
+		if active and button.texture_pressed != null:
+			button.texture_normal = button.texture_pressed
 		else:
-			bg.visible = false
+			button.texture_normal = _normal_textures[button]
+		var label := button.get_node_or_null("Label") as Label
+		if label:
+			label.add_theme_color_override("font_color", Color.BLACK if active else Color.WHITE)
