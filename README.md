@@ -2,6 +2,8 @@
 
 A fast, physics-based beyblade arena game made for The Very Serious Juniper Dev Game Jam. Control your beyblade, manage its stamina, and knock the enemy out before the match timer reaches zero.
 
+This project is configured for Windows and mobile (Android).
+
 ## How to Play
 
 1. Start the game from the title screen.
