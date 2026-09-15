@@ -2,8 +2,8 @@ name: Build Windows and Android
 
 on:
   push:
-  pull_request:
-  workflow_dispatch:
+    branches:
+      - main
 
 permissions:
   contents: read

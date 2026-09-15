@@ -47,8 +47,7 @@ The project uses the GL Compatibility renderer and a 1920x1080 viewport with a 1
 
 ## GitHub Builds
 
-The **Build Windows and Android** Actions workflow runs on pushes, pull requests,
-and manually through **Actions → Build Windows and Android → Run workflow**.
+The **Build Windows and Android** Actions workflow runs only on pushes to `main`.
 It uses Godot 4.7 and downloads matching export templates.
 
 After a successful run, download its artifacts:
